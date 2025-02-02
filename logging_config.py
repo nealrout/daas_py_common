@@ -2,7 +2,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 # Configure the logger
-logger = logging.getLogger('my_project')
+logger = logging.getLogger('daas_py')
 logger.setLevel(logging.DEBUG)
 
 # Create a rotating file handler
