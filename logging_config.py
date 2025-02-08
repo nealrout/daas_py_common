@@ -8,8 +8,9 @@ logger.setLevel(logging.DEBUG)
 # Create a rotating file handler
 file_handler = RotatingFileHandler(
     'app.log',  # Log file name
+    encoding="utf-8",
     maxBytes=5 * 1024 * 1024,  # Maximum file size (5 MB)
-    backupCount=3  # Number of backup files to keep
+    backupCount=3,  # Number of backup files to keep
 )
 
 # Create a console handler
