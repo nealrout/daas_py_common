@@ -7,8 +7,6 @@ class DatabaseLogHandler(logging.Handler):
     def __init__(self, db_config):
         super().__init__()
         self.db_config = db_config
-        # self.conn = psycopg2.connect(**db_config)
-        # self.cursor = self.conn.cursor()
 
     def emit(self, record):
         try:
@@ -23,18 +21,9 @@ class DatabaseLogHandler(logging.Handler):
             call_statement = f"CALL {configs.DB_PROC_LOG}(%s, %s, %s, %s)"
             params = (level, message, file_name, line_number)
             # Execute the procedure
-            
-            # self.cursor.execute(call_statement, params)
-            # self.conn.commit()
             cursor.execute(call_statement, params)
             conn.commit()
             cursor.close()
             conn.close()
         except Exception as e:
             print(f"Logging to DB failed: {e}")  # Fallback logging
-
-    # def close(self):
-    #     self.cursor.close()
-    #     self.conn.close()
-    #     super().close()
-
