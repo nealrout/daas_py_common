@@ -18,7 +18,7 @@ class DatabaseLogHandler(logging.Handler):
             file_name = record.pathname
             line_number = record.lineno
 
-            call_statement = f"CALL {configs.DB_PROC_LOG}(%s, %s, %s, %s)"
+            call_statement = f"CALL {configs.DB_FUNC_LOG}(%s, %s, %s, %s)"
             params = (level, message, file_name, line_number)
             # Execute the procedure
             cursor.execute(call_statement, params)
