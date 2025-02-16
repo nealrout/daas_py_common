@@ -1,10 +1,18 @@
 import logging
 from daas_py_common.DatabaseLogHandler import DatabaseLogHandler
 from logging.handlers import RotatingFileHandler
-logger = logging.getLogger('daas_py')
-logger.setLevel(logging.DEBUG)
 from daas_py_config import config
 configs = config.get_configs()
+
+logger = logging.getLogger('daas_py')
+
+if not hasattr(logging, configs.LOG_LEVEL.upper()):
+    raise ValueError(f"Invalid log level: {configs.LOG_LEVEL}")
+
+ # Default to INFO if invalid
+log_level = getattr(logging, configs.LOG_LEVEL.upper(), logging.INFO) 
+
+logger.setLevel(log_level)
 
 db_config = {
     'dbname': configs.DATABASE_NAME,
