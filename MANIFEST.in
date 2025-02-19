@@ -1,0 +1,19 @@
+# Include all Python source files
+recursive-include daas_py_api *.py
+
+# Include all static files, templates, and migrations
+recursive-include daas_py_api/static *
+recursive-include daas_py_api/templates *
+recursive-include daas_py_api/migrations *
+
+# Include other non-Python files like env files, JSON, YAML, etc.
+recursive-include daas_py_api *.json
+recursive-include daas_py_api *.yaml
+recursive-include daas_py_api *.env
+
+# Ensure README and requirements are included
+include README.md
+include requirements.txt
+
+# Exclude compiled Python files
+global-exclude __pycache__ *.pyc *.pyo *.pyd
